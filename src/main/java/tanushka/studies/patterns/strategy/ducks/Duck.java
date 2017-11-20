@@ -11,11 +11,26 @@ import tanushka.studies.patterns.strategy.quackbehavior.QuackBehavior;
  * @version $Id$
  * @see
  */
-public class Duck {
-    private FlyBehavior flyBehavior;
-    private QuackBehavior quackBehavior;
+public abstract class Duck {
+    protected FlyBehavior flyBehavior;
+    protected QuackBehavior quackBehavior;
 
-    public void perfomQuack() {
+    public Duck(FlyBehavior flyBehavior, QuackBehavior quackBehavior) {
+        this.flyBehavior = flyBehavior;
+        this.quackBehavior = quackBehavior;
+    }
+
+    public Duck setFlyBehavior(FlyBehavior flyBehavior) {
+        this.flyBehavior = flyBehavior;
+        return this;
+    }
+
+    public Duck setQuackBehavior(QuackBehavior quackBehavior) {
+        this.quackBehavior = quackBehavior;
+        return this;
+    }
+
+    public void performQuack() {
         this.quackBehavior.quack();
     }
 
@@ -24,12 +39,9 @@ public class Duck {
     }
 
     public void swim() {
-
+        System.out.println("All ducks can swim");
     }
 
-    public void display() {
-
-    }
-
+    public abstract void display();
 
 }
